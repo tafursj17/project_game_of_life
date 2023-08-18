@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -10,8 +9,8 @@ public class Main {
         //g => (int) El número de generaciones que se van a ejecutar
         //s => (int) La velocidad en milisegundos de las generaciones
 
-        int filas = 20;
-        int columnas = 30;
+        int filas = 10;
+        int columnas = 10;
 
         System.out.print("Introduce la velocidad en milisegundos [250-1000]: ");
         int velocidad = scanner.nextInt();
@@ -34,8 +33,9 @@ public class Main {
 
         //Generaciones
 
-        int numGeneraciones = 3; // Cambia este valor al número de generaciones que desees
+        int numGeneraciones = 1000; // Cambia este valor al número de generaciones que desees
         for (int gen = 1; gen <= numGeneraciones; gen++) {
+            clearConsole();
             System.out.println("Generación " + gen + ":");
             ambiente = generaciones(ambiente, filas, columnas);
             imprimirMatriz(ambiente);
@@ -44,6 +44,12 @@ public class Main {
 
         scanner.close();
 
+    }
+
+
+    public static void clearConsole() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
     public static int[][] generaciones(int ambiente[][], int filas, int columnas){
@@ -90,11 +96,20 @@ public class Main {
     public static void imprimirMatriz(int matriz[][]) {
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
-                System.out.print("[" + matriz[i][j] + "]");
+                String cell;
+                if (matriz[i][j] == 1) {
+                    cell = "\u25A0"; // celula viva (cuadrado negro)
+                } else {
+                    cell = "\u25A1"; // celula muerta (cuadrado blanco)
+                }
+                System.out.print(cell + " ");
             }
-            System.out.println();
+            System.out.println("|");
         }
+        System.out.println("+-------------------------+");
     }
 
-    
 }
+
+
+
