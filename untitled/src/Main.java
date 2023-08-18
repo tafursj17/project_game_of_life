@@ -25,25 +25,28 @@ public class Main {
         }
 
         //Imprimir matriz
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                System.out.print("[" +ambiente[i][j]+ "]");
-            }
-            System.out.println();
-        }
+        System.out.println("Generacion Original");
+        imprimirMatriz(ambiente);
 
         //Generaciones
-        //int gen = 10;
-        generaciones(ambiente, filas, columnas);
+
+        int numGeneraciones = 3; // Cambia este valor al número de generaciones que desees
+        for (int gen = 1; gen <= numGeneraciones; gen++) {
+            System.out.println("Generación " + gen + ":");
+            ambiente = generaciones(ambiente, filas, columnas);
+            imprimirMatriz(ambiente);
+        }
+
 
     }
 
-    public static void generaciones(int ambiente[][], int filas, int columnas){
+    public static int[][] generaciones(int ambiente[][], int filas, int columnas){
+
         int[][] ambienteCopia = new int[filas][columnas];
 
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
-                
+
                 int celulasVivas = 0;
                 for (int k = -1; k <=1 ; k++) { //Fila arriba y abajo
                     for (int l = -1; l <=1 ; l++) { //Columna derecha e izquierda
@@ -73,19 +76,19 @@ public class Main {
 
             }
         }
-        System.out.println("Nueva generacion");
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                System.out.print("[" +ambienteCopia[i][j]+ "]");
-            } System.out.println();
-        }
 
-
-
+        return ambienteCopia;
 
     }
 
+    public static void imprimirMatriz(int matriz[][]) {
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.print("[" + matriz[i][j] + "]");
+            }
+            System.out.println();
+        }
+    }
 
-
-
+    
 }
