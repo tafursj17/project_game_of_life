@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -42,14 +43,15 @@ public class Main {
 
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
-
+                
                 int celulasVivas = 0;
                 for (int k = -1; k <=1 ; k++) { //Fila arriba y abajo
                     for (int l = -1; l <=1 ; l++) { //Columna derecha e izquierda
-                        if ((i+1<=0 && i+k<filas) && (j+k>=0 && j+l<columnas)){ //evitar desbordamiento
+                        if ((i+k>=0 && i+k<filas) && (j+l>=0 && j+l<columnas)){ //evitar desbordamiento
                             celulasVivas += ambiente[i+k][j+l];
                         }
                     }
+                }
 
                     celulasVivas -= ambiente[i][j];
 
@@ -67,18 +69,17 @@ public class Main {
                     }else {
                         ambienteCopia[i][j] = ambiente[i][j];
                     }
-                }
-
-
-
-
-
-
-
 
 
             }
         }
+        System.out.println("Nueva generacion");
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                System.out.print("[" +ambienteCopia[i][j]+ "]");
+            } System.out.println();
+        }
+
 
 
 
