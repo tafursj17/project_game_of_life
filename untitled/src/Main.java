@@ -3,15 +3,19 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws InterruptedException {
+        Scanner scanner = new Scanner(System.in);
         //w => (int) Ancho en caracteres
         //h => (int) Altura en caracteres
         //g => (int) El número de generaciones que se van a ejecutar
         //s => (int) La velocidad en milisegundos de las generaciones
 
-        int filas = 5;
-        int columnas = 5;
+        int filas = 20;
+        int columnas = 20;
+
+        System.out.print("Introduce la velocidad en milisegundos [250-1000]: ");
+        int velocidad = scanner.nextInt();
+        scanner.close();
 
         int[][] ambiente = new int[filas][columnas];
 
@@ -35,8 +39,10 @@ public class Main {
             System.out.println("Generación " + gen + ":");
             ambiente = generaciones(ambiente, filas, columnas);
             imprimirMatriz(ambiente);
+            Thread.sleep(velocidad);
         }
 
+        scanner.close();
 
     }
 
