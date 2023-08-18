@@ -9,12 +9,17 @@ public class Main {
         //g => (int) El número de generaciones que se van a ejecutar
         //s => (int) La velocidad en milisegundos de las generaciones
 
-        int filas = 10;
-        int columnas = 10;
+        System.out.print("Ingresa el ancho del ambiente: ");
+        int filas = scanner.nextInt();
+
+        System.out.print("Ingresa la altura del ambiente: ");
+        int columnas = scanner.nextInt();
 
         System.out.print("Introduce la velocidad en milisegundos [250-1000]: ");
         int velocidad = scanner.nextInt();
-        scanner.close();
+
+        System.out.println("Ingresa el numero de generaciones: ");
+        int numGeneraciones = scanner.nextInt();
 
         int[][] ambiente = new int[filas][columnas];
 
@@ -32,8 +37,6 @@ public class Main {
         imprimirMatriz(ambiente);
 
         //Generaciones
-
-        int numGeneraciones = 1000; // Cambia este valor al número de generaciones que desees
         for (int gen = 1; gen <= numGeneraciones; gen++) {
             clearConsole();
             System.out.println("Generación " + gen + ":");
@@ -45,8 +48,6 @@ public class Main {
         scanner.close();
 
     }
-
-
     public static void clearConsole() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -67,9 +68,7 @@ public class Main {
                         }
                     }
                 }
-
                     celulasVivas -= ambiente[i][j];
-
                     //Regla #1
                     if ((ambiente[i][j] == 1) && (celulasVivas < 2)){
                         ambienteCopia[i][j] = 0;
@@ -84,18 +83,18 @@ public class Main {
                     }else {
                         ambienteCopia[i][j] = ambiente[i][j];
                     }
-
-
             }
         }
-
         return ambienteCopia;
-
     }
 
     public static void imprimirMatriz(int matriz[][]) {
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
+                if (j == 0){
+                    System.out.print("| ");
+                }
+
                 String cell;
                 if (matriz[i][j] == 1) {
                     cell = "\u25A0"; // celula viva (cuadrado negro)
@@ -106,7 +105,7 @@ public class Main {
             }
             System.out.println("|");
         }
-        System.out.println("+-------------------------+");
+        System.out.println("+---------------------------------------+");
     }
 
 }
