@@ -11,7 +11,7 @@ public class Main {
         //s => (int) La velocidad en milisegundos de las generaciones
 
         int filas = 20;
-        int columnas = 20;
+        int columnas = 30;
 
         System.out.print("Introduce la velocidad en milisegundos [250-1000]: ");
         int velocidad = scanner.nextInt();
