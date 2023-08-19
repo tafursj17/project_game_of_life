@@ -8,7 +8,7 @@ public class Main {
         //h => (int) Altura en caracteres
         //g => (int) El número de generaciones que se van a ejecutar
         //s => (int) La velocidad en milisegundos de las generaciones
-
+        System.out.println();
         System.out.print("Ingresa el ancho del ambiente: ");
         int filas = scanner.nextInt();
 
@@ -18,7 +18,7 @@ public class Main {
         System.out.print("Introduce la velocidad en milisegundos [250-1000]: ");
         int velocidad = scanner.nextInt();
 
-        System.out.println("Ingresa el numero de generaciones: ");
+        System.out.print("Ingresa el numero de generaciones: ");
         int numGeneraciones = scanner.nextInt();
 
         int[][] ambiente = new int[filas][columnas];
@@ -37,13 +37,26 @@ public class Main {
         imprimirMatriz(ambiente);
 
         //Generaciones
-        for (int gen = 1; gen <= numGeneraciones; gen++) {
-            clearConsole();
-            System.out.println("Generación " + gen + ":");
-            ambiente = generaciones(ambiente, filas, columnas);
-            imprimirMatriz(ambiente);
-            Thread.sleep(velocidad);
+        if (numGeneraciones ==0){
+            while (numGeneraciones==0){
+                for (int gen = 1; gen > numGeneraciones; gen++) {
+                    clearConsole();
+                    System.out.println("Generación " + gen + ":");
+                    ambiente = generaciones(ambiente, filas, columnas);
+                    imprimirMatriz(ambiente);
+                    Thread.sleep(velocidad);
+                }
+            }
+        } else {
+            for (int gen = 1; gen <= numGeneraciones; gen++) {
+                clearConsole();
+                System.out.println("Generación " + gen + ":");
+                ambiente = generaciones(ambiente, filas, columnas);
+                imprimirMatriz(ambiente);
+                Thread.sleep(velocidad);
+            }
         }
+
 
         scanner.close();
 
@@ -107,6 +120,7 @@ public class Main {
         }
         System.out.println("+---------------------------------------+");
     }
+
 
 }
 
