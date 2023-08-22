@@ -1,15 +1,11 @@
 import java.util.Random;
 import java.util.Scanner;
-
+//Sebastian Tafur
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
-        //w => (int) Ancho en caracteres
-        //h => (int) Altura en caracteres
-        //g => (int) El número de generaciones que se van a ejecutar
-        //s => (int) La velocidad en milisegundos de las generaciones
 
-        int columnas;
+        int columnas;  //w => (int) Ancho en caracteres
         do {
             System.out.println("Ingresa el ancho del ambiente [10,20,40,80]: ");
             columnas = scanner.nextInt();
@@ -20,7 +16,7 @@ public class Main {
         } while (columnas != 10 && columnas != 20 && columnas != 30 && columnas != 40 && columnas != 80);
 
 
-        int filas;
+        int filas; //h => (int) Altura en caracteres
         do {
             System.out.println("Ingresa la altura del ambiente [10,20,40]: ");
             filas = scanner.nextInt();
@@ -30,7 +26,7 @@ public class Main {
             }
         } while (filas != 10 && filas != 20 && filas != 30 && filas != 40);
 
-        int velocidad;
+        int velocidad;     //s => (int) La velocidad en milisegundos de las generaciones
         do {
             System.out.print("Introduce la velocidad en milisegundos [250-1000]: ");
             velocidad = scanner.nextInt();
@@ -40,7 +36,7 @@ public class Main {
             }
         }while (velocidad <250 || velocidad > 1000);
 
-        int numGeneraciones;
+        int numGeneraciones;    //g => (int) El número de generaciones que se van a ejecutar
         do {
             System.out.print("Ingresa el numero de generaciones: ");
             numGeneraciones = scanner.nextInt();
