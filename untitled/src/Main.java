@@ -142,18 +142,18 @@ public class Main {
                     }
                 }
                     celulasVivas -= ambiente[i][j];
-                    //Regla #1
+                    //Regla #1(subpoblacion)
                     if ((ambiente[i][j] == 1) && (celulasVivas < 2)){
                         ambienteCopia[i][j] = 0;
                     }
-                    //Regla #2
+                    //Regla #2(superpoblacion)
                     else if ((ambiente[i][j] == 1) && (celulasVivas > 3)) {
                         ambienteCopia[i][j] = 0;
                     }
-                    //Regla #3
+                    //Regla #4(nacimiento)
                     else if ((ambiente[i][j] == 0) && (celulasVivas == 3)) {
                         ambienteCopia[i][j] = 1;
-                    }else {
+                    }else { //#3 porque mantendria lo mismo que la primera matriz
                         ambienteCopia[i][j] = ambiente[i][j];
                     }
             }
