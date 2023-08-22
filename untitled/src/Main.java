@@ -8,29 +8,93 @@ public class Main {
         //h => (int) Altura en caracteres
         //g => (int) El número de generaciones que se van a ejecutar
         //s => (int) La velocidad en milisegundos de las generaciones
-        System.out.println();
-        System.out.print("Ingresa el ancho del ambiente: ");
-        int filas = scanner.nextInt();
 
-        System.out.print("Ingresa la altura del ambiente: ");
-        int columnas = scanner.nextInt();
+        int columnas;
+        do {
+            System.out.println("Ingresa el ancho del ambiente [10,20,40,80]: ");
+            columnas = scanner.nextInt();
 
-        System.out.print("Introduce la velocidad en milisegundos [250-1000]: ");
-        int velocidad = scanner.nextInt();
+            if (columnas != 10 && columnas != 20 && columnas != 30 && columnas != 40 && columnas != 80) {
+                System.out.println("El valor ingresado no es valido");
+            }
+        } while (columnas != 10 && columnas != 20 && columnas != 30 && columnas != 40 && columnas != 80);
 
-        System.out.print("Ingresa el numero de generaciones: ");
-        int numGeneraciones = scanner.nextInt();
+
+        int filas;
+        do {
+            System.out.println("Ingresa la altura del ambiente [10,20,40]: ");
+            filas = scanner.nextInt();
+
+            if (filas != 10 && filas != 20 && filas != 30 && filas != 40) {
+                System.out.println("El valor ingresado no es valido");
+            }
+        } while (filas != 10 && filas != 20 && filas != 30 && filas != 40);
+
+        int velocidad;
+        do {
+            System.out.print("Introduce la velocidad en milisegundos [250-1000]: ");
+            velocidad = scanner.nextInt();
+
+            if (velocidad <250 || velocidad > 1000){
+                System.out.println("Valor no valido");
+            }
+        }while (velocidad <250 || velocidad > 1000);
+
+        int numGeneraciones;
+        do {
+            System.out.print("Ingresa el numero de generaciones: ");
+            numGeneraciones = scanner.nextInt();
+            if (numGeneraciones<0){
+                System.out.println("El numero debe ser 0 o mayor");
+            }
+        }while (numGeneraciones<0);
+
+        //Escoger semilla o aleatorio
+        int option;
+        do {
+            System.out.print("1. Rnd -> aleatoria \n" + "2. Semilla \n");
+            System.out.print("Debes escoger si quieres una matriz aleatoria o ingresar una semilla: ");
+            option = scanner.nextInt();
+
+            if (option != 1 && option !=2){
+                System.out.println("Valor no valido");
+            }
+        }while (option != 1 && option !=2);
+
 
         int[][] ambiente = new int[filas][columnas];
 
         Random random = new Random();
 
+
         //llenar matriz
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                ambiente[i][j] = random.nextInt(2);
+        if (option == 1) {
+            for (int i = 0; i < filas; i++) {
+                for (int j = 0; j < columnas; j++) {
+                    ambiente[i][j] = random.nextInt(2);
+                }
+            }
+        } else {
+            scanner.nextLine();
+            System.out.println("Ingresa la semilla de poblacion: ");
+            String semilla = scanner.nextLine();
+
+            String[] filasSemilla = semilla.split("#");
+
+            // matriz por poblacion
+            for (int i = 0; i < filas && i < filasSemilla.length; i++) {
+                String filaSemilla = filasSemilla[i];
+                for (int j = 0; j < columnas && j < filaSemilla.length(); j++) {
+                    char c = filaSemilla.charAt(j);
+                    if (c == '1') {
+                        ambiente[i][j] = 1;
+                    } else {
+                        ambiente[i][j] = 0;
+                    }
+                }
             }
         }
+
 
         //Imprimir matriz
         System.out.println("Generacion Original");
@@ -120,7 +184,6 @@ public class Main {
         }
         System.out.println("+---------------------------------------+");
     }
-
 
 }
 
